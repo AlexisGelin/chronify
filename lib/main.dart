@@ -1,3 +1,9 @@
+import 'package:chronify/widgets/Author.dart';
+import 'package:chronify/widgets/BackPlayNextIco.dart';
+import 'package:chronify/widgets/Image.dart';
+import 'package:chronify/widgets/PlayTime.dart';
+import 'package:chronify/widgets/Slider.dart';
+import 'package:chronify/widgets/Title.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +23,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//////////////////////// HOME PAGE
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -25,37 +33,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    double _value = 0;
-
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Image(
-              image: NetworkImage(
-                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-            ),
-            Slider(
-              min: 0.0,
-              max: 100.0,
-              value: _value,
-              onChanged: (value) {
-                setState(() {
-                  _value = value;
-                });
-              },
-            ),
+          children: const <Widget>[
+            CreateImage(),
+            CreateTitle(),
+            CreateAuthor(),
+            PlayTime(),
+            CreateSlider(),
+            AllIcon()
           ],
         ),
       ),
