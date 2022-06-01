@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
-AudioPlayer player = AudioPlayer();
+AssetsAudioPlayer audioPlayer = AssetsAudioPlayer(); // this will create a instance object of a class
+bool isPlaying = false;
 
-class AllIcon extends StatelessWidget {
-  const AllIcon({
-    Key? key,
-  }) : super(key: key);
-
-  Future toggleSound() async {
-    int result = await player.play('assets/audio/No_Problems_Tom_Budin_Remix.mp3', isLocal: true);
-    if (result == 1) {
-      // success
-    }
-  }
+class CreateAllIcon extends StatefulWidget {
+  const CreateAllIcon({Key? key}) : super(key: key);
 
   @override
+  State<CreateAllIcon> createState() => _CreateAllIcon();
+}
+
+class _CreateAllIcon extends State<CreateAllIcon> {
+  double _currentSliderValue = 0;
+
+
+  void playOrPause() {
+    audioPlayer.playOrPause();
+  }
+
+ @override
   Widget build(BuildContext context) {
+    audioPlayer.open(Audio('assets/audio/Slipping.mp3'),
+        autoStart: false, showNotification: true);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -28,9 +34,10 @@ class AllIcon extends StatelessWidget {
               onPressed: () {}),
           IconButton(
               iconSize: 70,
-              icon: const Icon(Icons.play_arrow),
+              icon: Icon(isPlaying ? Icons.play_arrow : Icons.pause),
               onPressed: () {
-                toggleSound();
+                playOrPause();
+                isPlaying = !isPlaying;
               }),
           IconButton(
               iconSize: 70,

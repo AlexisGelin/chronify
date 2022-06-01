@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             CreateAuthor(),
             PlayTime(),
             CreateSlider(),
-            AllIcon()
+            CreateAllIcon()
           ],
         ),
       ),
