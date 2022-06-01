@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 
-AssetsAudioPlayer audioPlayer = AssetsAudioPlayer(); // this will create a instance object of a class
+AssetsAudioPlayer audioPlayer =
+    AssetsAudioPlayer(); // this will create a instance object of a class
 bool isPlaying = false;
 
 class CreateAllIcon extends StatefulWidget {
@@ -12,14 +13,8 @@ class CreateAllIcon extends StatefulWidget {
 }
 
 class _CreateAllIcon extends State<CreateAllIcon> {
-  double _currentSliderValue = 0;
 
-
-  void playOrPause() {
-    audioPlayer.playOrPause();
-  }
-
- @override
+  @override
   Widget build(BuildContext context) {
     audioPlayer.open(Audio('assets/audio/Slipping.mp3'),
         autoStart: false, showNotification: true);
@@ -36,8 +31,10 @@ class _CreateAllIcon extends State<CreateAllIcon> {
               iconSize: 70,
               icon: Icon(isPlaying ? Icons.play_arrow : Icons.pause),
               onPressed: () {
-                playOrPause();
-                isPlaying = !isPlaying;
+                audioPlayer.playOrPause();
+                // setState(() {
+                //   isPlaying = !isPlaying;
+                // });
               }),
           IconButton(
               iconSize: 70,
